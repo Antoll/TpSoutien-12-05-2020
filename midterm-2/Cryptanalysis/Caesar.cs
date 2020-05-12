@@ -51,13 +51,9 @@ namespace Cryptanalysis
         {
             int[] guess = Tools.Histogram(cypherText);
             int max = 0;
-            int le = guess.Length;
-            for (int i = 0; i < le; i++)
+            for (int i = 0; i < guess.Length; i++)
             {
-                if (guess[i] > guess[max])
-                {
-                    max = i;
-                }
+                if (guess[i] > guess[max]) max = i;
             }
 
             int key = max - 4;
