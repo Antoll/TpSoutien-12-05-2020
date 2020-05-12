@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Cryptanalysis
 {
@@ -11,20 +13,56 @@ namespace Cryptanalysis
             this.key = key;
         }
 
-
         public string Encrypt(string msg)
         {
-            throw new NotImplementedException();
+            int l = msg.Length;
+            int i = 0;
+            while (i <= l)
+            {
+                if (Tools.LetterIndex(msg[i]) != -1)
+                {
+                    Tools.RotChar(msg[i], key);
+                }
+
+                i++;
+            }
+
+            return msg;
         }
 
         public string Decrypt(string cypherText)
         {
-            throw new NotImplementedException();
+            int l = cypherText.Length;
+            int i = 0;
+            while (i <= l)
+            {
+                if (Tools.LetterIndex(cypherText[i]) != -1)
+                {
+                    Tools.RotChar(cypherText[i], -key);
+                }
+
+                i++;
+            }
+
+            return cypherText;
         }
 
         public static int GuessKey(string cypherText)
         {
-            throw new NotImplementedException();
+            int[] guess = Tools.Histogram(cypherText);
+            int max = 0;
+            int le = guess.Length;
+            for (int i = 0; i < le; i++)
+            {
+                if (guess[i] > guess[max])
+                {
+                    max = i;
+                }
+            }
+
+            int key = max - 4;
+            return key;
         }
+        
     }
 }
