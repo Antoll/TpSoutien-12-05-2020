@@ -14,47 +14,40 @@ public static class Tools
         return mod < 0 ? b + mod : mod;
     }
 
-    public static int LetterIndex(char c)
+    public static int LetterIndex(char c)//ok
     {
-        int res = -1;
         if (c >= 65 && c <= 90)
         {
-            res = Convert.ToInt32(c) - 65;
-        }
-
-        return res;
-    }
-
-    public static char RotChar(char c, int n)
-    {
-        char res = 'e';
-        if (c <= 65 && c >= 90)
-        {
-            if (Convert.ToInt32(c) + n <= 90)
-            {
-                res = Convert.ToChar(Convert.ToInt32(c) + n);
-            }
-            else
-            {
-                int r = 90 - Convert.ToInt32(c);
-                res = Convert.ToChar(64 + (n - r));
-            }
+            return c - 65;
         }
 
         if (c >= 97 && c <= 122)
         {
-            if (Convert.ToInt32(c) + n <= 122)
+            return c - 97;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    public static char RotChar(char c, int n)//ok
+    {
+        if (!((c >= 97 && c <= 122) || (c >= 65 && c <= 90)))
+        {
+            return c;
+        }
+        else
+        {
+            if (c >= 97 && c <= 122)
             {
-                res = Convert.ToChar(Convert.ToInt32(c) + n);
+                return (char) (Modulus(c-97+n,26)+97);
             }
             else
             {
-                int r = 122 - Convert.ToInt32(c);
-                res = Convert.ToChar(96 + (n - r));
+                return (char) (Modulus(c - 65 + n, 26) + 65);
             }
         }
-
-        return res;
     }
 
     public static int[] Histogram(string str)

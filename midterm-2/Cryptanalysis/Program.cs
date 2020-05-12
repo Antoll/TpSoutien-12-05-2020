@@ -7,8 +7,8 @@ internal static class Program
     private static void Main()
     {
         // Put your tests here.
-
-        Test();
+        Console.WriteLine(Tools.RotChar('4',2));
+        //Test();
     }
 
     private static void Test()

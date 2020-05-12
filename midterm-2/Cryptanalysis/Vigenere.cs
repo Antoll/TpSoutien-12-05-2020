@@ -5,9 +5,15 @@ namespace Cryptanalysis
 public class Vigenere
 {
     public const float FrenchIndexOfCoincidence = 0.0778F;
+
+    private string key;
     public Vigenere(string key)
     {
-        throw new NotImplementedException();
+        this.key = key;
+        if (key == null)
+        {
+            throw new ArgumentException();
+        }
     }
 
     public string Encrypt(string msg)
